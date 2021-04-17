@@ -105,3 +105,19 @@ use >> to loop from first value to second
 use << to loop from second to first
 
 ### Check "examples.txt" for examples on for loops
+
+## Built ins:
+
+"pop" removes the last item from an array
+
+"push" adds a value to the end of an array
+
+To use pop, put the pop keyword followed by a colon and a space
+
+Then put the array that you'd like to pop from (followed by a semicolon ofc)
+
+To use push, put the push keyword followed by a colon and a space
+
+Then put the array you'd like to push to followed by a comma and a space, then the value (followed by a semicolon ofc)
+
+### Check "examples.txt" for examples of built in functions
