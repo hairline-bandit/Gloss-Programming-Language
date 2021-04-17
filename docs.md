@@ -93,3 +93,15 @@ Now that you know what replaces indents and brackets, I will only need to give y
 \- is subtraction
 
 \% is modulo
+
+## For loop
+
+"for" stays as "for"
+
+for loops are non inclusive in their range
+
+use >> to loop from first value to second
+
+use << to loop from second to first
+
+### Check "examples.txt" for examples on for loops
