@@ -108,7 +108,7 @@ for line in enumerate(code_lines):
                 break
             name_of += i
         defed_funcs.append(name_of)
-        if type_of != "null":
+        if type_of != "" and len(list(params)) > 1:
             if len(line[1][line[1].index("(") + 1: line[1].index(")")].split(", ")) > 1:
                 a = line[1][line[1].index("(") + 1: line[1].index(")")].split(", ")
                 for i in a:
@@ -180,7 +180,54 @@ for line in enumerate(code_lines):
             else:
                 new_f.write(type_of + " {\n")
         elif type_of == "null":
+            list_params = list(params)
+            for i in list_params:
+                new_f.write(i + " ")
+                if params[i] is "str":
+                    new_f.write("string")
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
+                elif params[i] is "flt":
+                    new_f.write("float64")
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
+                elif params[i] is "char":
+                    new_f.write("rune")
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
+                elif params[i] is "[]str":
+                    new_f.write("[]string")
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
+                elif params[i] is "[]flt":
+                    new_f.write("[]float64")
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
+                elif params[i] is "[]char":
+                    new_f.write("[]rune")
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
+                else:
+                    new_f.write(params[i])
+                    if i is list_params[-1]:
+                        pass
+                    else:
+                        new_f.write(", ")
             new_f.write(") {\n")
+
+
     # end of function bracket
     elif line[1][0] is "<":
         new_f.write("}\n")
