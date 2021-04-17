@@ -1,6 +1,6 @@
 import sys
 
-file = sys.argv[1]
+file = "code.txt" # sys.argv[1]
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
@@ -108,7 +108,7 @@ for line in enumerate(code_lines):
                 break
             name_of += i
         defed_funcs.append(name_of)
-        if type_of != "" and len(list(params)) > 1:
+        if type_of != "":
             if len(line[1][line[1].index("(") + 1: line[1].index(")")].split(", ")) > 1:
                 a = line[1][line[1].index("(") + 1: line[1].index(")")].split(", ")
                 for i in a:
@@ -116,7 +116,8 @@ for line in enumerate(code_lines):
                     params[b[1]] = b[0]
             elif len(line[1][line[1].index("(") + 1: line[1].index(")")].split(", ")) == 1:
                 a = line[1][line[1].index("(") + 1: line[1].index(")")].split(" ")
-                params[a[1]] = a[0]
+                if len(a) > 1:
+                    params[a[1]] = a[0]
         new_f.write("func " + name_of + "(")
         if type_of != "null":
             list_params = list(params)
@@ -183,45 +184,45 @@ for line in enumerate(code_lines):
             list_params = list(params)
             for i in list_params:
                 new_f.write(i + " ")
-                if params[i] is "str":
+                if params[i] == "str":
                     new_f.write("string")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "flt":
+                elif params[i] == "flt":
                     new_f.write("float64")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "char":
+                elif params[i] == "char":
                     new_f.write("rune")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "[]str":
+                elif params[i] == "[]str":
                     new_f.write("[]string")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "[]flt":
+                elif params[i] == "[]flt":
                     new_f.write("[]float64")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "[]char":
+                elif params[i] == "[]char":
                     new_f.write("[]rune")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
                 else:
                     new_f.write(params[i])
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
