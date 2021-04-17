@@ -1,8 +1,3 @@
-# Write Powershell script to execute this file
-# This file converts .txt code file to .go file with go equivalent from .txt
-# Powershell compiles/exeutes .go and deletes it after
-
-
 import sys
 
 file = sys.argv[1]
@@ -234,10 +229,10 @@ for line in enumerate(code_lines):
                 new_f.write("}")
 
         data = line[1][line[1].index(" ") + 6:-2]
-        if data.split(" ")[1] == ">>":
-            new_f.write("for " + data[0] + " := " + data.split(" ")[2][:-1] + "; " + data[0] + " < " + data.split(" ")[-1] + "; " + data[0] + "++ {\n")
-        elif data.split(" ")[1] == "<<":
-            new_f.write("for " + data[0] + " := " + data.split(" ")[-1] + "; " + data[0] + " > " + data.split(" ")[2][:-1] + "; " + data[0] + "-- {\n")
+        if data.split(" ")[2] == ">>":
+            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data[0] + " < " + data.split(" ")[-1] + "; " + data[0] + "++ {\n")
+        elif data.split(" ")[2] == "<<":
+            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[-1] + "; " + data[0] + " > " + data.split(" ")[3][:-1] + "; " + data[0] + "-- {\n")
 
     # change var values
     elif "--" in line[1] or "++" in line[1] or "=" in line[1]:
