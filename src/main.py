@@ -1,6 +1,6 @@
 import sys
 
-file = "code.txt" # sys.argv[1]
+file = sys.argv[1]
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
