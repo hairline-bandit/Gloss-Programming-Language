@@ -1,6 +1,6 @@
 import sys
 
-file = sys.argv[1]
+file = "code.txt" # sys.argv[1]
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
@@ -20,12 +20,12 @@ for line in enumerate(code_lines):
         new_f.write(line + "\n")
     # variables
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] in types:
-        if line[1][-1] is not ";":
+        if line[1][-1] != ";":
             raise Exception(f"Missing \";\" on line {line[0]}")
         for i in line[1].split(" ")[0]:
-            if i is ">":
+            if i == ">":
                 new_f.write("\t")
-            elif i is "<":
+            elif i == "<":
                 new_f.write("}")
         type_of = ""
         name_of = ""
@@ -52,9 +52,9 @@ for line in enumerate(code_lines):
             type_of = "[]bool"
 
         for i in line[1].split(" ")[2]:
-            if i is not ":":
+            if i != ":":
                 name_of += i
-            elif i is ":":
+            elif i == ":":
                 break
 
         if "[]" in type_of:
@@ -62,19 +62,19 @@ for line in enumerate(code_lines):
             after_colon = False
             for i in enumerate(line[1]):
                 if not after_colon:
-                    if i[1] is ":":
+                    if i[1] == ":":
                         after_colon = True
                         continue
                 elif after_colon and i[0] != line[1].index(":") + 1:
-                    if i[1] is not "[" and i[1] is not "]" and i[1] is not ";":
+                    if i[1] != "[" and i[1] != "]" and i[1] != ";":
                         new_f.write(i[1])
             new_f.write("}\n")
-        elif "[]" not in type_of and type_of is not "":
+        elif "[]" not in type_of and type_of != "":
             new_f.write("var " + name_of + " " + type_of + " = ")
             after_colon = False
             for i in enumerate(line[1]):
                 if not after_colon:
-                    if i[1] is ":":
+                    if i[1] == ":":
                         after_colon = True
                         continue
                 elif after_colon and i[0] != line[1].index(":") + 1:
@@ -84,15 +84,15 @@ for line in enumerate(code_lines):
     # printing
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] == "dis:":
         for i in line[1].split(" ")[0]:
-            if i is ">":
+            if i == ">":
                 new_f.write("\t")
-            elif i is "<":
+            elif i == "<":
                 new_f.write("}")
         new_f.write("fmt.Println(")
         after_colon = False
         for i in enumerate(line[1]):
             if not after_colon:
-                if i[1] is ":":
+                if i[1] == ":":
                     after_colon = True
                     continue
             elif i[0] != len(line[1]) - 1 and after_colon and i[0] != line[1].index(":") + 1:
@@ -104,7 +104,7 @@ for line in enumerate(code_lines):
         name_of = ""
         params = {}
         for i in line[1].split(" ")[1]:
-            if i is "(":
+            if i == "(":
                 break
             name_of += i
         defed_funcs.append(name_of)
@@ -123,60 +123,60 @@ for line in enumerate(code_lines):
             list_params = list(params)
             for i in list_params:
                 new_f.write(i + " ")
-                if params[i] is "str":
+                if params[i] == "str":
                     new_f.write("string")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "flt":
+                elif params[i] == "flt":
                     new_f.write("float64")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "char":
+                elif params[i] == "char":
                     new_f.write("rune")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "[]str":
+                elif params[i] == "[]str":
                     new_f.write("[]string")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "[]flt":
+                elif params[i] == "[]flt":
                     new_f.write("[]float64")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
-                elif params[i] is "[]char":
+                elif params[i] == "[]char":
                     new_f.write("[]rune")
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
                 else:
                     new_f.write(params[i])
-                    if i is list_params[-1]:
+                    if i == list_params[-1]:
                         pass
                     else:
                         new_f.write(", ")
             new_f.write(") ")
-            if type_of is "str":
+            if type_of == "str":
                 new_f.write("string {\n")
-            elif type_of is "flt":
+            elif type_of == "flt":
                 new_f.write("float64 {\n")
-            elif type_of is "char":
+            elif type_of == "char":
                 new_f.write("rune {\n")
-            elif type_of is "[]str":
+            elif type_of == "[]str":
                 new_f.write("[]string {\n")
-            elif type_of is "[]flt":
+            elif type_of == "[]flt":
                 new_f.write("[]float64 {\n")
-            elif type_of is "[]char":
+            elif type_of == "[]char":
                 new_f.write("[]rune {\n")
             else:
                 new_f.write(type_of + " {\n")
@@ -230,14 +230,14 @@ for line in enumerate(code_lines):
 
 
     # end of function bracket
-    elif line[1][0] is "<":
+    elif line[1][0] == "<":
         new_f.write("}\n")
 
     # returning
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] == "return":
         counter = 0
         for i in line[1].split(" ")[0]:
-            if i is ">":
+            if i == ">":
                 new_f.write("\t")
             counter += 1
         new_f.write(line[1][counter + 1:-1] + "\n")
@@ -256,9 +256,9 @@ for line in enumerate(code_lines):
     # if else else if (nor)
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] in ifs:
         for i in line[1].split(" ")[0]:
-            if i is ">":
+            if i == ">":
                 new_f.write("\t")
-            elif i is "<":
+            elif i == "<":
                 new_f.write("}")
 
         if line[1].split(" ")[1] == "if":
@@ -271,9 +271,9 @@ for line in enumerate(code_lines):
     # for loop
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] == "for":
         for i in line[1].split(" ")[0]:
-            if i is ">":
+            if i == ">":
                 new_f.write("\t")
-            elif i is "<":
+            elif i == "<":
                 new_f.write("}")
 
         data = line[1][line[1].index(" ") + 6:-2]
@@ -286,9 +286,9 @@ for line in enumerate(code_lines):
     elif "--" in line[1] or "++" in line[1] or "=" in line[1]:
         counter = 0
         for i in line[1].split(" ")[0]:
-            if i is ">":
+            if i == ">":
                 new_f.write("\t")
-            elif i is "<":
+            elif i == "<":
                 new_f.write("}")
             counter += 1
         new_f.write(line[1][counter + 1:-1] + "\n")
