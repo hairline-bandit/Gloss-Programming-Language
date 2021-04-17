@@ -3,14 +3,17 @@ def pop(name):
 
 def push(name, value):
     new_f.write(name + " = append(" + name + ", " + value + ")\n")
-    
+
+def remove(name, index):
+    new_f.write(name + " = append(" + name + "[:" + index + "], " + name + "[" + index + " + 1:]...)\n")
+
 import sys
 
 file = sys.argv[1]
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
-built_ins = ["pop:", "push:"]
+built_ins = ["pop:", "push:", "remove:"]
 defed_funcs = []
 
 with open(file, "r") as f:
@@ -303,6 +306,10 @@ for line in enumerate(code_lines):
             name = line[1].split(" ")[2][:-1]
             value = line[1][line[1].index(",") + 2:-1]
             push(name, value)
+        elif line[1].split(" ")[1] == "remove:":
+            name = line[1].split(" ")[2][:-1]
+            index = line[1].split(" ")[3][:-1]
+            remove(name, index)
 
 
     # change var values
