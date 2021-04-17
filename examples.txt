@@ -1,1 +1,61 @@
+* In order of mention in docs.md
+* The syntax is highly, highly, highly, specific and you need to mind which space is where (or else parser doesn't work)
 
+null main()<
+> do; 
+> stuff;
+<
+
+dis: "Hello World";
+* In use
+null main()<
+> dis: "Hello World";
+<
+
+int a: 5;
+str b: "5";
+bool c: true;
+* In use
+null main()<
+> int a: 5;
+<
+
+int a: 5;
+a += 4
+(a is now 9)
+a = 3;
+(a is now 3)
+* In use
+null main()<
+> int a: 5;
+> a += 3;
+> dis: a;
+<
+(Prints 8)
+
+null print_greet()<
+> dis: "Hello";
+<
+int add_these(int a, int b)<
+> return a + b;
+<
+* Executing these
+print_greet();
+add_these(5, 6);
+
+if (condition)<
+> do;
+> stuff;
+< nor (condition)<
+> do; 
+> stuff;
+< else < 
+> do;
+> stuff;
+<
+* Nested
+if ()<
+> if ()<
+>> do stuff;
+>< * ends nested if
+< * ends first if
