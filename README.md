@@ -6,6 +6,10 @@ Make a folder on desktop called "gloss"
 
 Put the hq.ps1 file and main.py file directly inside
 
+Make sure you have the Python interpreter in your path and able to be ran with "python" command in prompt
+
+Make sure you have the GoLang compiler installed
+
 ## To start programming:
 
 Make a text file in the gloss folder you made
