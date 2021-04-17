@@ -1,6 +1,6 @@
 # Info:
 
-Gloss is a statically typed hybrid language (hybrid meaning it is interpreted by and interpreted language and then ran through a compiled)
+Gloss is a statically typed hybrid language (hybrid meaning it is interpreted by an interpreted language and then ran through a compiled)
 
 It is designed to use the least amount of "hard to hit" characters as possible so that you might be able to program faster using it
 
