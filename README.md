@@ -1,5 +1,5 @@
 # Gloss-Programming-Language
 
-# To set up:
+## To set up:
 
 Make 
