@@ -72,3 +72,8 @@ for (int i << 0, 10)<
 <
 * Starts at second val (10) and goes to second + 1 (because non inclusive)
 * Note that to loop with math in the loop ie. "for (int i >> 1+2, 10)<" you will have to not put a space between the operations (or define a new var with the math and use it)
+
+[]int a: [1, 2, 3];
+pop: a;
+push: a, 4;
+* The integer array "a" becomes [1, 2, 4] as 3 is removed and then 4 is added
