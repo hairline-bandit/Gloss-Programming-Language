@@ -1,14 +1,6 @@
-"""
-Ideas:
-Actually make the thing
-Use -_- strategy and make a new text file with script (turn into program) and then run through python interpreter
-"""
-# imma do the -_- version
-
-
 # Write Powershell script to execute this file
-# This file converts .gloss code file to .txt file with go equivalent from .gloss
-# Powershell turns .txt file into go and runs and then deletes .txt and .go files
+# This file converts .txt code file to .go file with equivalent
+# Powershell uses Go's compiler to run .go file and delete .go file
 
 
 import sys
