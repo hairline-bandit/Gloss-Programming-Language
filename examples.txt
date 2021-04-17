@@ -59,3 +59,12 @@ if ()<
 >> do stuff;
 >< * ends nested if
 < * ends first if
+
+for (int i >> 0, 10)<
+> dis: i;
+<
+* Starts at first val (0) and goes to second - 1 (because non inclusive)
+for (int i << 0, 10)<
+> dis: i;
+<
+* Starts at second val (10) and goes to second + 1 (because non inclusive)
