@@ -77,3 +77,6 @@ for (int i << 0, 10)<
 pop: a;
 push: a, 4;
 * The integer array "a" becomes [1, 2, 4] as 3 is removed and then 4 is added
+[]int b: [1, 2, 3, 4];
+remove: b, 1;
+* The integer array "b" becomes [1, 3, 4] as 2 (index 1) is removed
