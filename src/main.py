@@ -1,9 +1,16 @@
+def pop(name):
+    new_f.write(name + " = " + name + "[:len(" + name + ")-1]\n")
+
+def push(name, value):
+    new_f.write(name + " = append(" + name + ", " + value + ")\n")
+    
 import sys
 
 file = sys.argv[1]
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
+built_ins = ["pop:", "push:"]
 defed_funcs = []
 
 with open(file, "r") as f:
@@ -282,6 +289,22 @@ for line in enumerate(code_lines):
         elif data.split(" ")[2] == "<<":
             new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[-1] + "; " + data[0] + " > " + data.split(" ")[3][:-1] + "; " + data[0] + "-- {\n")
 
+    # built ins
+    elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] in built_ins:
+        for i in line[1].split(" ")[0]:
+            if i == ">":
+                new_f.write("\t")
+            elif i == "<":
+                new_f.write("}")
+        if line[1].split(" ")[1] == "pop:":
+            name = line[1][line[1].rindex(" ") + 1:-1]
+            pop(name)
+        elif line[1].split(" ")[1] == "push:":
+            name = line[1].split(" ")[2][:-1]
+            value = line[1][line[1].index(",") + 2:-1]
+            push(name, value)
+
+
     # change var values
     elif "--" in line[1] or "++" in line[1] or "=" in line[1]:
         counter = 0
@@ -301,3 +324,5 @@ for line in enumerate(code_lines):
             elif i == "<":
                 new_f.write("}")
         new_f.write("\n")
+
+
