@@ -326,3 +326,4 @@ for line in enumerate(code_lines):
         new_f.write("\n")
 
 
+new_f.close()
