@@ -62,9 +62,12 @@ if ()<
 
 for (int i >> 0, 10)<
 > dis: i;
+> i += 0;
 <
 * Starts at first val (0) and goes to second - 1 (because non inclusive)
+* Note "i += 0;" this is due to variables from loops (and all variables for that matter) having to be used due to GoLang being the implementation lanuage
 for (int i << 0, 10)<
 > dis: i;
+> i += 0;
 <
 * Starts at second val (10) and goes to second + 1 (because non inclusive)
