@@ -9,3 +9,5 @@
 4/17/21 Added built in function "remove" check docs.md and examples.txt
 
 4/18/21 Added built in functions "strIndex" "strRindex" "split" "join" "arrIndex" "arrRindex" check docs.md and examples.txt (the last 2 were hell to implement due to GoLang's static-ness (I couldn't pass any type to the same function so I had to make 10 functions instead of 2))
+
+4/18/21 Added built in function "scan" check docs.md and examples.txt
