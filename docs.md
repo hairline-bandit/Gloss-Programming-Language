@@ -114,6 +114,18 @@ use << to loop from second to first
 
 "remove" removes a value from an array by index
 
+"strIndex" gets the leftmost index of a substring from a string
+
+"strRindex" gets the rightmost index of a substring from a string
+
+"split" splits string by a delimeter
+
+"join" joins arr string by a separator 
+
+"arrIndex" gets the leftmost index of a value from an arr < There are 5 1 character suffixes for the function  
+
+"arrRindex" gets the rightmost index of a value from an arr < There are 5 1 character suffixes for the function
+
 To use pop, put the pop keyword followed by a colon and a space
 
 Then put the array that you'd like to pop from (followed by a semicolon ofc)
@@ -125,5 +137,23 @@ Then put the array you'd like to push to followed by a comma and a space, then t
 To use remove, put the remove keyword followed by a colon and a space
 
 Then put the array that you'd like to remove from followed by a comma and a space, then the index that you'd like to remove (followed by a semicolon ofc)
+
+To use strIndex, put the strIndex keyword followed by a colon and a space
+
+Then put the array you'd like to get from followed by a comma and a space, then the substring, then a comma and a space followed by the variable that you'd like to dump the index result to (it creates a new variable so make sure that you haven't declared it yet) (followed by a semicolon ofc)
+
+To use strRindex, do the same thing as strIndex
+
+To use split, put the split keyword followed by a colon and a space
+
+Then put the string you'd like to split followed by a comma and a space, then the delimeter, then a comma and a space followed by the variable you'd like to dump the result to (it makes a new variable) (followed by a semicolon ofc)
+
+To use join, put the join keyword followed by a colon and a space
+
+Then put the string array variable followed by a comma and a space, then the separator, then a comma and a space followed by the variable you'd like to dump the result to (it makes a new variable) (followed by a semicolon ofc)
+
+To use arrIndex, put the arrIndex keyword followed by either a "S" for string (string arrays), "I" for int, "F" for float, "C" for char, or "B" for boolean (ie. arrIndexS) followed by a colon and a space
+
+Then put the array (corresponding type) followed by a comma and a space, then the value you are searching for, then a comma and a space followed by the variable you'd like to dump the result to (it makes a new variable) (followed by a semicolon ofc)
 
 ### Check "examples.txt" for examples of built in functions
