@@ -1,0 +1,20 @@
+// FizzBuzz Demonstration 
+
+#dec run
+null main()<
+> run(50);
+<
+
+null run(int n)<
+> for (int i >> 1, n)<
+>> if (i % 15 == 0)<
+>>> dis: "FizzBuzz";
+>>< nor (i % 3 == 0)<
+>>> dis: "Fizz";
+>>< nor (i % 5 == 0)<
+>>> dis: "Buzz";
+>>< else <
+>>> dis: i;
+>><
+><
+<
