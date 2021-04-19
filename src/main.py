@@ -49,6 +49,20 @@ def arrRindexC(name, value, vardump):
 def arrRindexB(name, value, vardump):
     new_f.write(vardump + " := arrRindexB(" + name + ", " + value + ")\n")
 
+def scan(to_type, name, message, tabs):
+    new_f.write("fmt.Print(" + message + ")\n")
+    new_f.write("\t" * tabs + "scanner.Scan()\n")
+    if to_type == "str":
+        new_f.write("\t" * tabs + name + " = scanner.Text()\n")
+    elif to_type == "int":
+        new_f.write("\t" * tabs + name + "asdasdasdasd, err := strconv.Atoi(scanner.Text())\n" + "\t" * tabs + "if err == nil {\n\t" + "\t" * tabs + name + " = " + name + "asdasdasdasd\n" + "\t" * tabs + "}\n")
+    elif to_type == "flt":
+        new_f.write("\t" * tabs + name + "asdasdasdasd, err := strconv.ParseFloat(scanner.Text(), 64)\n" + "\t" * tabs + "if err == nil {\n\t" + "\t" * tabs + name + " = " + name + "asdasdasdasd\n" + "\t" * tabs + "}\n")
+    elif to_type == "bool":
+        new_f.write("\t" * tabs + name + "asdasdasdasd, err := strconv.ParseBool(scanner.Text())\n" + "\t" * tabs + "if err == nil {\n\t" + "\t" * tabs + name + " = " + name + "asdasdasdasd\n" + "\t" * tabs + "}\n")
+    elif to_type == "char":
+        new_f.write("\t" * tabs + name + " = rune(scanner.Text())\n")
+
 import sys
 
 file = sys.argv[1]
@@ -56,7 +70,7 @@ types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
 built_ins = ["pop:", "push:", "remove:", "strIndex:", "strRindex:", "split:", "join:", "arrIndexS:", "arrRindexS:",
-"arrIndexI:", "arrRindexI:", "arrIndexF:", "arrRindexF:", "arrIndexC:", "arrRindexC:", "arrIndexB:", "arrRindexB:"]
+"arrIndexI:", "arrRindexI:", "arrIndexF:", "arrRindexF:", "arrIndexC:", "arrRindexC:", "arrIndexB:", "arrRindexB:", "scan:"]
 defed_funcs = []
 
 needed_imports = ["\"fmt\""]
@@ -97,6 +111,12 @@ if "> arrIndexB: " in looking:
 if "> arrRindexB: " in looking:
     needed_funcs.append("arrRindexB")
 
+if "> scan: " in looking:
+    needed_imports.append("\"bufio\"")
+    needed_imports.append("\"os\"")
+    if "> scan: int, " in looking or "> scan: flt, " in looking or "> scan: bool, " in looking:
+        needed_imports.append("\"strconv\"")
+
 new_f = open("123123123123.go", "w")
 
 # new_f.write("package main\nimport (\n\t\"fmt\"\n)\n") <- removed as built in functions need golang imports
@@ -104,6 +124,8 @@ new_f.write("package main\nimport(")
 for i in needed_imports:
     new_f.write("\n\t" + i)
 new_f.write("\n)\n")
+if "\"bufio\"" in needed_imports:
+    new_f.write("var scanner = bufio.NewScanner(os.Stdin)\n")
 
 for line in enumerate(code_lines):
     # whitespace
@@ -466,6 +488,11 @@ for line in enumerate(code_lines):
             value = line[1][line[1].index(",") + 2: line[1].rindex(",")]
             vardump = line[1].split(" ")[-1][:-1]
             arrRindexB(name, value, vardump)
+        elif line[1].split(" ")[1] == "scan:":
+            to_type = line[1].split(" ")[2][:-1]
+            name = line[1].split(" ")[3][:-1]
+            message = line[1][line[1].index("\""):-1]
+            scan(to_type, name, message, tabs)
 
 
     # change var values
