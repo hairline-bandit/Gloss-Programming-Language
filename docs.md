@@ -126,6 +126,8 @@ use << to loop from second to first
 
 "arrRindex" gets the rightmost index of a value from an arr < There are 5 1 character suffixes for the function
 
+"scan" scans user input and assigns a variable to what is entered
+
 To use pop, put the pop keyword followed by a colon and a space
 
 Then put the array that you'd like to pop from (followed by a semicolon ofc)
@@ -155,5 +157,9 @@ Then put the string array variable followed by a comma and a space, then the sep
 To use arrIndex, put the arrIndex keyword followed by either a "S" for string (string arrays), "I" for int, "F" for float, "C" for char, or "B" for boolean (ie. arrIndexS) followed by a colon and a space
 
 Then put the array (corresponding type) followed by a comma and a space, then the value you are searching for, then a comma and a space followed by the variable you'd like to dump the result to (it makes a new variable) (followed by a semicolon ofc)
+
+To use scan, put the scan keyword followed by a colon and a space
+
+Then put the type of the variable that you want to assign to (str, int, flt, bool, char) followed by a comma and a space, then the variable (it has to be declared already) that you'd like to assign to, then a comma and a space followed by the message that you'd like to print for the user input (this is because dis: prints a newline and it looks bad for user input) (The message has to be in quotes; it can't be a str variable). (This is followed by a semicolon ofc)
 
 ### Check "examples.txt" for examples of built in functions
