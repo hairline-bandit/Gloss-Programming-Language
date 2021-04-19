@@ -80,3 +80,24 @@ push: a, 4;
 []int b: [1, 2, 3, 4];
 remove: b, 1;
 * The integer array "b" becomes [1, 3, 4] as 2 (index 1) is removed
+str a: "This is a string";
+strIndex: a, "is", b;
+* The int "b" becomes 2 as the first index of "is" is in "This" at index 2
+str c: "This is a string";
+strRindex: c, "is", d;
+* The int "d" becomes 5 as the last index (rightmost) of "is" is index 5
+str a: "Let's split this";
+split: a, " ", b;
+* The string array "b" becomes ["Let's", "split", "this"] as the delimeter " " is splitting the string
+[]str a: ["Let's", "join", "this"];
+join: a, " ", b;
+* The string "b" becomes "Let's join this" as the " " separator is put between each value
+[]str a: ["There", "is", "2", "is"];
+arrIndexS: a, "is", b;
+* The int "b" becomes 1 as the first (leftmost) index of "is" in "a" is index 1
+* Note that to look through int, flt, char, or bool arrays, you have to change the "S" in arrIndexS to I, F, C, or B, repectively. 
+[]str c: ["There", "is", "2", "is"];
+arrRindexS: c, "is", d;
+* The int "d" becomes 3 as the last (rightmost) index of "is" in "c" is index 3
+* Note that to look through int, flt, char, or bool arrays, you have to change the "S" in arrRindexS to I, F, C, or B, repectively. 
+
