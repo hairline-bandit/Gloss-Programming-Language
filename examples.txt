@@ -100,4 +100,10 @@ arrIndexS: a, "is", b;
 arrRindexS: c, "is", d;
 * The int "d" becomes 3 as the last (rightmost) index of "is" in "c" is index 3
 * Note that to look through int, flt, char, or bool arrays, you have to change the "S" in arrRindexS to I, F, C, or B, repectively. 
+str a: "";
+scan: str, a, "Enter your name: ";
+* The str "a" becomes the user's name (or whatever is entered)
+int b: 0;
+scan: int, b, "Enter an integer: ";
+* The int "b" becomes whatever integer the user entered
 
