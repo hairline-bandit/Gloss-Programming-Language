@@ -1,0 +1,5 @@
+// This is a simple Hello World program
+
+null main()<
+> dis: "Hello World!";
+<
