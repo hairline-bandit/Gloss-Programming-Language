@@ -12,7 +12,7 @@ Make sure you have the GoLang compiler installed
 
 ## To start programming:
 
-Make a text file in the gloss folder you made
+Make a text file (or literally any other plaintext file) in the gloss folder you made
 
 Use notepad or any other text editor to enter the code 
 
