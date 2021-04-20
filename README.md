@@ -30,7 +30,7 @@ I didn't feel like learning Flex, Bison, and LLVM to make one the "traditional" 
 
 How this works is the .txt file contains your code and it parsed by the python script
 
-It will turn your code into its equivalent in GoLang (I chose GoLang because I dont' know C and because it's pretty fast with some good functions built in)
+It will turn your code into its equivalent in GoLang (I chose GoLang because I don't know C and because it's pretty fast with some good functions built in)
 
 The Powershell script will run the python script with whatever file you specify and will also compile/execute and then delete the .go file that is created
 
