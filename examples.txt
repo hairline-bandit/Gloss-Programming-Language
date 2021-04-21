@@ -106,4 +106,7 @@ scan: str, a, "Enter your name: ";
 int b: 0;
 scan: int, b, "Enter an integer: ";
 * The int "b" becomes whatever integer the user entered
-
+str a: "12";
+int: str, a, b;
+* The int "b" becomes 12 as that was the contents of the str "a"
+* The same general schematic works for the other conversion functions as well
