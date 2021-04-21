@@ -63,14 +63,46 @@ def scan(to_type, name, message, tabs):
     elif to_type == "char":
         new_f.write("\t" * tabs + name + " = rune(scanner.Text())\n")
 
+def strt(type, name, vardump):
+    if type == "int":
+        new_f.write(vardump + " := strconv.Itoa(" + name + ")\n")
+    elif type == "flt":
+        new_f.write(vardump + " := fmt.Sprintf(\"%g\", " + name + ")\n")
+    elif type == "char":
+        new_f.write(vardump + " := string(" + name + ")\n")
+    elif type == "bool":
+        new_f.write(vardump + " := strconv.FormatBool(" + name + ")\n")
+
+def intt(type, name, vardump):
+    if type == "str":
+        new_f.write(vardump + "asodiuacjjknjkn, err := strconv.Atoi(" + name + ")\n" + "\t" * tabs + "err = err\n" + "\t" * tabs + vardump + " := " + vardump + "asodiuacjjknjkn\n")
+    elif type == "flt":
+        new_f.write(vardump + " := int(" + name + ")\n")
+
+def fltt(type, name, vardump, tabs):
+    if type == "str":
+        new_f.write(vardump + "asodiuacjjknjkn, err := strconv.ParseFloat(" + name + ", 64)\n" + "\t" * tabs + "err = err\n" + "\t" * tabs + vardump + " := " + vardump + "asodiuacjjknjkn\n")
+    elif type == "int":
+        new_f.write(vardump + " := float64(" + name + ")\n")
+
+def chart(type, name, vardump):
+    new_f.write(vardump + " := rune(" + name + ")\n")
+
+def boolt(type, name, vardump, tabs):
+    if type == "str":
+        new_f.write(vardump + "asodiuacjjknjkn, err := strconv.ParseBool(" + name + ")\n" + "\t" * tabs + "err = err\n" + "\t" * tabs + vardump + " := " + vardump + "asodiuacjjknjkn\n")
+
 import sys
 
 file = sys.argv[1]
+
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
 built_ins = ["pop:", "push:", "remove:", "strIndex:", "strRindex:", "split:", "join:", "arrIndexS:", "arrRindexS:",
-"arrIndexI:", "arrRindexI:", "arrIndexF:", "arrRindexF:", "arrIndexC:", "arrRindexC:", "arrIndexB:", "arrRindexB:", "scan:"]
+"arrIndexI:", "arrRindexI:", "arrIndexF:", "arrRindexF:", "arrIndexC:", "arrRindexC:", "arrIndexB:", "arrRindexB:",
+"scan:", "str:", "flt:", "int:", "char:", "bool:"]
+
 defed_funcs = []
 
 needed_imports = ["\"fmt\""]
@@ -116,6 +148,20 @@ if "> scan: " in looking:
     needed_imports.append("\"os\"")
     if "> scan: int, " in looking or "> scan: flt, " in looking or "> scan: bool, " in looking:
         needed_imports.append("\"strconv\"")
+
+if "> str: int, " in looking or "> str: bool, " in looking:
+    if "\"strconv\"" not in needed_imports:
+        needed_imports.append("\"strconv\"")
+elif "> int: str, " in looking:
+    if "\"strconv\"" not in needed_imports:
+        needed_imports.append("\"strconv\"")
+elif "> flt: str, " in looking:
+    if "\"strconv\"" not in needed_imports:
+        needed_imports.append("\"strconv\"")
+elif "> bool: str, " in looking:
+    if "\"strings\"" not in needed_imports:
+        needed_imports.append("\"strconv\"")
+
 
 new_f = open("123123123123.go", "w")
 
@@ -493,6 +539,31 @@ for line in enumerate(code_lines):
             name = line[1].split(" ")[3][:-1]
             message = line[1][line[1].index("\""):-1]
             scan(to_type, name, message, tabs)
+        elif line[1].split(" ")[1] == "str:":
+            type = line[1].split(" ")[2][:-1]
+            name = line[1].split(" ")[3][:-1]
+            vardump = line[1].split(" ")[4][:-1]
+            strt(type, name, vardump)
+        elif line[1].split(" ")[1] == "int:":
+            type = line[1].split(" ")[2][:-1]
+            name = line[1].split(" ")[3][:-1]
+            vardump = line[1].split(" ")[4][:-1]
+            intt(type, name, vardump)
+        elif line[1].split(" ")[1] == "flt:":
+            type = line[1].split(" ")[2][:-1]
+            name = line[1].split(" ")[3][:-1]
+            vardump = line[1].split(" ")[4][:-1]
+            fltt(type, name, vardump, tabs)
+        elif line[1].split(" ")[1] == "char:":
+            type = line[1].split(" ")[2][:-1]
+            name = line[1].split(" ")[3][:-1]
+            vardump = line[1].split(" ")[4][:-1]
+            chart(type, name, vardump)
+        elif line[1].split(" ")[1] == "bool:":
+            type = line[1].split(" ")[2][:-1]
+            name = line[1].split(" ")[3][:-1]
+            vardump = line[1].split(" ")[4][:-1]
+            boolt(type, name, vardump, tabs)
 
 
     # change var values
