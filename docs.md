@@ -128,6 +128,8 @@ use << to loop from second to first
 
 "scan" scans user input and assigns a variable to what is entered
 
+"int" "str" "flt" "bool" "char" all dump the conversion of a specified var type to type specified by function name
+
 To use pop, put the pop keyword followed by a colon and a space
 
 Then put the array that you'd like to pop from (followed by a semicolon ofc)
@@ -161,5 +163,9 @@ Then put the array (corresponding type) followed by a comma and a space, then th
 To use scan, put the scan keyword followed by a colon and a space
 
 Then put the type of the variable that you want to assign to (str, int, flt, bool, char) followed by a comma and a space, then the variable (it has to be declared already) that you'd like to assign to, then a comma and a space followed by the message that you'd like to print for the user input (this is because dis: prints a newline and it looks bad for user input) (The message has to be in quotes; it can't be a str variable). (This is followed by a semicolon ofc)
+
+To use int str flt bool char, put the keyword followed by a colon and a space
+
+Then put the type of the variable you are converting from followed by a commma and a space, then the variable you are converting from, then a comma and a space followed by the name of the variable you'd like to dump the contents to (it creates a new variable) (This is followed by a semicolon ofc)
 
 ### Check "examples.txt" for examples of built in functions
