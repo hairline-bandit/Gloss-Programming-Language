@@ -159,7 +159,7 @@ elif "> flt: str, " in looking:
     if "\"strconv\"" not in needed_imports:
         needed_imports.append("\"strconv\"")
 elif "> bool: str, " in looking:
-    if "\"strings\"" not in needed_imports:
+    if "\"strconv\"" not in needed_imports:
         needed_imports.append("\"strconv\"")
 
 
