@@ -13,3 +13,9 @@
 4/18/21 Added built in function "scan" check docs.md and examples.txt
 
 4/20/21 Added built in functions "int" "str" "flt" "char" "bool" check docs.md and examples.txt
+
+9/21/23 Added step feature to for loops, figure out how to use it yourself
+
+9/21/23 Added random number generater, (random: variable, start, stop), not inclusive upper-bound. Only integers
+
+9/21/23 Files now are required to have the .gls extension to be run by the transpiler
