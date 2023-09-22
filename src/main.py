@@ -1,3 +1,4 @@
+import random
 def pop(name):
     new_f.write(name + " = " + name + "[:len(" + name + ")-1]\n")
 
@@ -96,12 +97,16 @@ import sys
 
 file = sys.argv[1]
 
+if file.split(".")[1] != "gls":
+    print("invalid file type")
+    exit()
+
 types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool"]
 func_types = ["int", "str", "flt", "char", "bool", "[]int", "[]str", "[]flt", "[]char", "[]bool", "null"]
 ifs = ["if", "else", "nor"]
 built_ins = ["pop:", "push:", "remove:", "strIndex:", "strRindex:", "split:", "join:", "arrIndexS:", "arrRindexS:",
 "arrIndexI:", "arrRindexI:", "arrIndexF:", "arrRindexF:", "arrIndexC:", "arrRindexC:", "arrIndexB:", "arrRindexB:",
-"scan:", "str:", "flt:", "int:", "char:", "bool:"]
+"scan:", "str:", "flt:", "int:", "char:", "bool:", "random:", "break;"]
 
 defed_funcs = []
 
@@ -161,6 +166,9 @@ elif "> flt: str, " in looking:
 elif "> bool: str, " in looking:
     if "\"strconv\"" not in needed_imports:
         needed_imports.append("\"strconv\"")
+
+if "> random:" in looking:
+    needed_imports.append("\"math/rand\"")
 
 
 new_f = open("123123123123.go", "w")
@@ -440,9 +448,9 @@ for line in enumerate(code_lines):
 
         data = line[1][line[1].index(" ") + 6:-2]
         if data.split(" ")[2] == ">>":
-            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data[0] + " < " + data.split(" ")[-1] + "; " + data[0] + "++ {\n")
+            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data[0] + " < " + data.split(" ")[4][:-1] + "; " + data[0] + "+=" + data.split(" ")[-1] + "{\n")
         elif data.split(" ")[2] == "<<":
-            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[-1] + "; " + data[0] + " > " + data.split(" ")[3][:-1] + "; " + data[0] + "-- {\n")
+            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data[0] + " > " + data.split(" ")[4][:-1] + "; " + data[0] + "-=" + data.split(" ")[-1] + "{\n")
 
     # built ins
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] in built_ins:
@@ -564,6 +572,14 @@ for line in enumerate(code_lines):
             name = line[1].split(" ")[3][:-1]
             vardump = line[1].split(" ")[4][:-1]
             boolt(type, name, vardump, tabs)
+        elif line[1].split(" ")[1] == "random:":
+            name = line[1].split(" ")[2][:-1]
+            low = line[1][line[1].index(",") + 2: line[1].rindex(",")]
+            high = line[1].split(" ")[-1][:-1]
+            new_f.write(name + " := int(rand.Float64()*(" + high + "-" + low + ")+" + low + ")" + "\n")
+        elif line[1].split(" ")[1] == "break;":
+            new_f.write("break;\n")
+        
 
 
     # change var values
