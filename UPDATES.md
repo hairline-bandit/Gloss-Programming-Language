@@ -19,3 +19,5 @@
 9/21/23 Added random number generater, (random: variable, start, stop), not inclusive upper-bound. Only integers
 
 9/21/23 Files now are required to have the .gls extension to be run by the transpiler
+
+9/21/23 Added break statements (break;)
