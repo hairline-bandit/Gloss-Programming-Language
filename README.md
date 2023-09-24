@@ -1,5 +1,7 @@
 # Gloss-Programming-Language
 
+If you want to see a full-scale project using this language, go to https://github.com/hairline-bandit/Gloss-Encryption-Algorithm
+
 ## To set up:
 
 Make a folder on desktop called "gloss"
