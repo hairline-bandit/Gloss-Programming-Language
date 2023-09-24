@@ -79,6 +79,8 @@ def intt(type, name, vardump):
         new_f.write(vardump + "asodiuacjjknjkn, err := strconv.Atoi(" + name + ")\n" + "\t" * tabs + "err = err\n" + "\t" * tabs + vardump + " := " + vardump + "asodiuacjjknjkn\n")
     elif type == "flt":
         new_f.write(vardump + " := int(" + name + ")\n")
+    elif type == "char":
+        new_f.write(vardump + " := int(" + name + ")\n")
 
 def fltt(type, name, vardump, tabs):
     if type == "str":
@@ -186,8 +188,8 @@ for line in enumerate(code_lines):
     if line[1] == "":
         continue
     # comments
-    elif line[1][0:3] == "//":
-        new_f.write(line + "\n")
+    elif line[1][0:2] == "//":
+        new_f.write(line[1] + "\n")
     # variables
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] in types:
         if line[1][-1] != ";":
@@ -447,10 +449,11 @@ for line in enumerate(code_lines):
                 new_f.write("}")
 
         data = line[1][line[1].index(" ") + 6:-2]
+        # FIX THIS TO MAKE IT WORK
         if data.split(" ")[2] == ">>":
-            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data[0] + " < " + data.split(" ")[4][:-1] + "; " + data[0] + "+=" + data.split(" ")[-1] + "{\n")
+            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data.split(" ")[1] + " < " + data.split(" ")[4][:-1] + "; " + data.split(" ")[1] + "+=" + data.split(" ")[-1] + "{\n")
         elif data.split(" ")[2] == "<<":
-            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data[0] + " > " + data.split(" ")[4][:-1] + "; " + data[0] + "-=" + data.split(" ")[-1] + "{\n")
+            new_f.write("for " + data.split(" ")[1] + " := " + data.split(" ")[3][:-1] + "; " + data.split(" ")[1] + " > " + data.split(" ")[4][:-1] + "; " + data.split(" ")[1] + "-=" + data.split(" ")[-1] + "{\n")
 
     # built ins
     elif len(line[1].split(" ")) > 1 and line[1].split(" ")[1] in built_ins:
